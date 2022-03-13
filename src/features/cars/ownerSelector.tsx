@@ -43,11 +43,6 @@ const onDropdownSelected = (e: React.FormEvent<HTMLSelectElement>) => {
 
 const selector = (
   <select id='OwnerSelector' onChange={onDropdownSelected}>
-  {/* // <select id='OwnerSelector'> */}
-{/* <option value="volvo">Volvo</option>
-<option value="saab">Saab</option>
-<option value="opel">Opel</option>
-<option value="audi">Audi</option> */}
 {createSelectItems()}
      </select>
 )

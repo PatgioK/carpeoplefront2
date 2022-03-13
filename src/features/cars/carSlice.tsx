@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import produce from "immer";
 import { RootState } from "../../app/store";
 import { Statuses } from "../people/peopleSlice";
-import {fetchCars, createCar, destroyCar} from './carAPI';
+import {fetchCars, createCar, destroyCar, updateCar} from './carAPI';
 
 export interface CarState {
     id?: number,
@@ -17,6 +17,7 @@ export interface CarState {
 
 export interface CarFormData {
     car: {
+        id?: number,
         year?:number,
         make?:string,
         model?:string,
@@ -80,6 +81,15 @@ export const destroyCarAsync = createAsyncThunk(
     }
 )
 
+export const updateCarAsync = createAsyncThunk(
+    'cars/updateCars',
+    async (payload:CarFormData) => {
+        const response = await updateCar(payload);
+
+        return response;
+    }
+)
+
 export const carSlice = createSlice({
     name: 'cars',
     initialState,
@@ -138,6 +148,31 @@ export const carSlice = createSlice({
             })
         }) 
         .addCase(destroyCarAsync.rejected, (state) => {
+            return produce(state, (draftState) => {
+                draftState.status = Statuses.Error
+            })
+        }) 
+
+        //update
+
+        .addCase(updateCarAsync.pending, (state) => {
+            return produce(state, (draftState) => {
+               draftState.status = Statuses.Loading;
+            })
+        }) 
+
+        .addCase(updateCarAsync.fulfilled, (state, action) => {
+            return produce(state, (draftState) => {
+                const index = draftState.car.findIndex(
+                    car => car.id === action.payload.id
+                )
+
+                draftState.car[index] = action.payload
+
+                draftState.status = Statuses.UpToDate
+            })
+        }) 
+        .addCase(updateCarAsync.rejected, (state) => {
             return produce(state, (draftState) => {
                 draftState.status = Statuses.Error
             })

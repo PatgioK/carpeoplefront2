@@ -4,7 +4,7 @@ import { Dispatch } from "react";
 import { Car } from "../cars/car";
 import { PersonState } from "./peopleSlice";
 import { PersonButtonGroup } from "./personButtonGroup";
-import { CarFormData, CarState, selectCars } from "../cars/carSlice";
+import { CarFormData, CarState, selectCars, updateCarAsync } from "../cars/carSlice";
 import { useAppSelector } from "../../app/hooks";
 
 interface PersonProps {
@@ -36,7 +36,8 @@ function Person(props: PersonProps) {
     }
   
   function submitCarEdit(carData:CarFormData) {
-      // dispatch(updateCarAsync(carData));
+    console.log(carData);
+      dispatch(updateCarAsync(carData));
       toggleCarEditForm();
   }
   

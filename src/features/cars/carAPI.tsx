@@ -49,5 +49,23 @@ export async function destroyCar(payload:CarDeleteData) {
     console.error("error: ", error)
     return {} as CarsState;
   })
+}
 
+
+export async function updateCar(payload: CarFormData) {
+  const car = payload.car;
+  return fetch(`${API_URL}/cars/${car.id}.json`, {
+    method: "PUT",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      car
+    }),
+  })
+  .then((response) => response.json())
+  .catch((error) => {
+    console.log("Error: ", error);
+    return {} as CarState;
+  })
 }

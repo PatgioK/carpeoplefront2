@@ -10,7 +10,7 @@ const sleep = (ms:number) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
-export function CarForm (props: any) {
+export function CarForm () {
     const people = useAppSelector(selectPerson);
     const owner = useAppSelector(selectOwner);
     const dispatch = useDispatch();
