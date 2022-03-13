@@ -30,8 +30,9 @@ export function PersonForm() {
     }
 
     return <div className="person form">
-        <h1>person form</h1>
+        <h1>Create Person Form</h1>
         <form>
+            <label>first name: </label>
             <input
             type='text'
             className='form-control text-start'
@@ -39,6 +40,7 @@ export function PersonForm() {
             value={fname}
             onChange={(e) => setFName(e.target.value)}
             />
+            <label>last name: </label>
             <input
             type='text'
             className='form-control text-start'
@@ -46,6 +48,7 @@ export function PersonForm() {
             value={lname}
             onChange={(e) => setLName(e.target.value)}
             />
+            <label>email: </label>
             <input
             type='text'
             className='form-control text-start'

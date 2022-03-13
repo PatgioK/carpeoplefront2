@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { CarForm } from "../cars/carForm";
 import { selectCars } from "../cars/carSlice";
 import { selectPerson, fetchPersonAsync, updatePersonAsync, Statuses, selectStatus, PersonFormData } from "./peopleSlice";
 import Person from './person';
@@ -42,6 +43,7 @@ function People() {
     contents = <><div className="peoplecontainer">
       <h3>{status}</h3>
       <PersonForm />
+      <CarForm {...people}/>
       
       {people && people.length > 0 && people.map(person => {
         return <div key={person.id}>

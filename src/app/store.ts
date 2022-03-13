@@ -8,6 +8,7 @@ export const store = configureStore({
     counter: counterReducer,
     people: peopleReducer,
     cars: carsReducer,
+    // selectedOwner: ownerReducer,
   },
 });
 
