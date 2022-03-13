@@ -84,7 +84,7 @@ function Person(props: PersonProps) {
     </button>
   );
 
-  console.log(props.person.cars);
+  // console.log(props.person.cars);
 
   return (
     <div className="person">
@@ -103,7 +103,7 @@ function Person(props: PersonProps) {
       {props.person.cars &&
         props.person.cars?.length > 0 &&
         props.person.cars.map((carobj: CarState, idx) => {
-          console.log(carobj);
+          // console.log(carobj);
           return <Car car={carobj} dispatch={dispatch} key={idx} />;
         })}
     </div>

@@ -81,6 +81,7 @@ export const fetchPersonAsync = createAsyncThunk(
 export const createPersonAsync = createAsyncThunk(
   "people/createPerson",
   async (payload: PersonFormData) => {
+    console.log(payload);
     const response = await createPerson(payload);
 
     return response;
@@ -103,6 +104,7 @@ export const destroyPersonAsync = createAsyncThunk(
     return response;
   }
 );
+
 // TODO
 // all using immer, not sure if correct way
 // unit test this

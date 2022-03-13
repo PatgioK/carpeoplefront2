@@ -1,9 +1,4 @@
-import {
-  PeopleState,
-  PersonDeleteData,
-  PersonFormData,
-} from "./peopleSlice";
-
+import { PeopleState, PersonDeleteData, PersonFormData, } from "./peopleSlice";
 export const API_URL = "http://localhost:3000";
 
 export async function fetchPeople() {

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import produce from "immer";
 import { RootState } from "../../app/store";
 import { Statuses } from "../people/peopleSlice";
-import {fetchCars} from './carAPI';
+import {fetchCars, createCar} from './carAPI';
 
 export interface CarState {
     id?: number,
@@ -13,6 +13,16 @@ export interface CarState {
     person_id?: number
     created_at?: any,
     updated_at?: any,
+}
+
+export interface CarFormData {
+    car: {
+        year?:number,
+        make?:string,
+        model?:string,
+        price?:number,
+        person_id:number,
+    }
 }
 
 export interface CarsState {
@@ -40,6 +50,15 @@ export const fetchCarsAsync = createAsyncThunk(
     'cars/fetchCars',
     async() => {
         const response = await fetchCars();
+        return response;
+    }
+)
+
+export const createCarAsync = createAsyncThunk(
+    'cars/createCar',
+    async (payload:CarFormData) => {
+        console.log(payload);
+        const response = await createCar(payload);
         return response;
     }
 )
