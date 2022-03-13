@@ -1,12 +1,15 @@
 import { Dispatch } from "@reduxjs/toolkit";
+import { useEffect, useState } from "react";
 import { destroyCarAsync } from "./carSlice";
 
 interface carButGroop {
   car_id: number;
   dispatch: Dispatch<any>;
   toggleCarEditForm: () => void;
+  isCarEditing: boolean;
 }
 export function CarButtonGroup(props: carButGroop) {
+
   const handleDelClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -20,12 +23,12 @@ export function CarButtonGroup(props: carButGroop) {
 
   return (
     <div className="CarButtonGroup">
-      <button className="btn-danger" onClick={(e) => handleDelClick(e)}>
+      <button className="btn-warning" onClick={() => props.toggleCarEditForm()}>
+        {props.isCarEditing? "Cancel" : "Edit"}
+      </button>
+      {props.isCarEditing? "" : <button className="btn-danger" onClick={(e) => handleDelClick(e)}>
         Delete
-      </button>
-      <button className="editbutton" onClick={() => props.toggleCarEditForm()}>
-        Edit
-      </button>
+      </button>}
     </div>
   );
 }

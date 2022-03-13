@@ -7,6 +7,7 @@ interface pbutgroop {
   dispatch: Dispatch<any>;
   person: PersonState;
   toggleEditForm: () => void;
+  isEditing: boolean;
 }
 
 export function PersonButtonGroup(props: pbutgroop) {
@@ -25,14 +26,14 @@ export function PersonButtonGroup(props: pbutgroop) {
   return (
     <div className='pbutgroup'>
       <button 
-      className="editbutton"
+      className="btn-warning"
       onClick={() => props.toggleEditForm()}
-      >Edit</button>
+      >{props.isEditing? "Cancel" :  "Edit"}</button>
 
-      <button 
-      className="delbutton" 
+      {props.isEditing? "" :  <button 
+      className="btn-danger" 
       onClick={(e) => handleDelClick(e)}
-      >Delete</button>
+      >Delete</button>}
     </div>
   );
 }

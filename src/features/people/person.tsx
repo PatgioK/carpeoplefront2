@@ -66,9 +66,9 @@ function Person(props: PersonProps) {
     setEmail(props.person.email);
   }
 
-  const fnameEle = <p className="">{props.person.firstname}</p>;
-  const lnameEle = <p className="fnameEle">{props.person.lastname}</p>;
-  const emailEle = <p className="fnameEle">{props.person.email}</p>;
+  const fnameEle = <p className="">First Name: {props.person.firstname}  </p>;
+  const lnameEle = <p className="fnameEle">Last Name: {props.person.lastname} </p>;
+  const emailEle = <p className="fnameEle">Email: {props.person.email}</p>;
 
   const editableFName = (
     <input
@@ -97,7 +97,7 @@ function Person(props: PersonProps) {
 
   const submitButton = (
     <button type="submit" className="" onClick={(e) => submitHandler(e)}>
-      submit
+      Update
     </button>
   );
 
@@ -114,6 +114,7 @@ function Person(props: PersonProps) {
         dispatch={dispatch}
         person={props.person}
         toggleEditForm={props.toggleEditForm}
+        isEditing={isEditing}
       />
       {/* {props.person.cars ? <Cars cars={props.person.cars}/> : "" } */}
       <h2>cars container</h2>

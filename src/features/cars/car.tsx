@@ -2,7 +2,7 @@ import { Dispatch, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../app/hooks";
 import { CarButtonGroup } from "./carButtonGroup";
-import { CarState } from "./carSlice";
+import { CarFormData, CarState } from "./carSlice";
 import { OwnerSelector } from "./ownerSelector";
 import { selectOwner } from "./ownerSlice";
 
@@ -10,7 +10,7 @@ export interface car {
   car: CarState;
   dispatch: Dispatch<any>;
   carToEdit: number;
-  submitCarEdit: any;
+  submitCarEdit: (car: CarFormData) => void;
   toggleCarEditForm: () => void;
 }
 
@@ -92,7 +92,7 @@ export function Car(props: car) {
 
   const submitCarButton = (
     <button type="submit" className="" onClick={(e) => submitHandler(e)}>
-      submit
+      Update
     </button>
   );
 
@@ -105,6 +105,7 @@ export function Car(props: car) {
         car_id={props.car.id!!}
         toggleCarEditForm={props.toggleCarEditForm}
         dispatch={dispatch}
+        isCarEditing={isCarEditing}
       /> 
     </div>
   );
