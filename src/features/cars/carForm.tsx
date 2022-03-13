@@ -36,8 +36,8 @@ export function CarForm (props: any) {
     let submitHandler = async (e: React.FormEvent<HTMLElement>) => {
         e.preventDefault();
 
-        dispatch(setOwner())
-        await sleep(300);
+        // dispatch(setOwner())
+        // await sleep(300);
         const formData = {
             car: {
                 year: year,
@@ -47,7 +47,7 @@ export function CarForm (props: any) {
                 person_id: owner,
             }
         }
-        await sleep(300);
+        // await sleep(300);
         dispatch(createCarAsync(formData));
         resetState();
     }
