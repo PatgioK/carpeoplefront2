@@ -12,14 +12,28 @@ interface pbutgroop {
 
 export function PersonButtonGroup(props: pbutgroop) {
 
-    function handleDelClick(e: React.FormEvent<HTMLElement>) {
+
+
+  const delButton = () => {
+    let text = "Are you sure?";
+    if(window.confirm(text) == true) {
+      handleDelClick()
+    } else {
+      return;
+    }
+  }
+
+    function handleDelClick(
+      // e: React.FormEvent<HTMLElement>
+      ) 
+      {
         const payload = {
             person: {
                 person_id: props.person.id
                 
             }
         }
-        console.log(JSON.stringify(payload));
+        // console.log(JSON.stringify(payload));
         props.dispatch(destroyPersonAsync(payload));
     }
 
@@ -32,7 +46,7 @@ export function PersonButtonGroup(props: pbutgroop) {
 
       {props.isEditing? "" :  <button 
       className="btn-danger" 
-      onClick={(e) => handleDelClick(e)}
+      onClick={delButton}
       >Delete</button>}
     </div>
   );

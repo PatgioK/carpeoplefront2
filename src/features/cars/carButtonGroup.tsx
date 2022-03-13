@@ -10,8 +10,17 @@ interface carButGroop {
 }
 export function CarButtonGroup(props: carButGroop) {
 
+  const delButton = () => {
+    let text = "Are you sure?";
+    if(window.confirm(text) == true) {
+      handleDelClick()
+    } else {
+      return;
+    }
+  }
+
   const handleDelClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    // e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     const payload = {
       car: {
@@ -26,7 +35,7 @@ export function CarButtonGroup(props: carButGroop) {
       <button className="btn-warning" onClick={() => props.toggleCarEditForm()}>
         {props.isCarEditing? "Cancel" : "Edit"}
       </button>
-      {props.isCarEditing? "" : <button className="btn-danger" onClick={(e) => handleDelClick(e)}>
+      {props.isCarEditing? "" : <button className="btn-danger" onClick={delButton}>
         Delete
       </button>}
     </div>
