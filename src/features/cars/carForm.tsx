@@ -6,7 +6,6 @@ import { createCarAsync } from "./carSlice";
 import { OwnerSelector, selectOwner } from "./ownerSelector";
 import {setOwner} from './ownerSelector';
 
-
 const sleep = (ms:number) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
 };
@@ -30,8 +29,6 @@ export function CarForm (props: any) {
         setModel('');
         setPrice(-1);
     }
-
-
 
     let submitHandler = async (e: React.FormEvent<HTMLElement>) => {
         e.preventDefault();
@@ -82,9 +79,6 @@ export function CarForm (props: any) {
         <label>price: </label>
         <input type="number" name='priceinput' value={price} onChange={(e) => setPrice(parseInt(e.target.value))} />
         
-
-
-
         <button
                 type='submit'
                 onClick={(e) => submitHandler(e)}>Submit</button>

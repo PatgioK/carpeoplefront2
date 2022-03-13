@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import produce from "immer";
 import { RootState } from "../../app/store";
 import { CarState } from "../cars/carSlice";
+import { setOwner } from "../cars/ownerSelector";
 import {
   fetchPeople,
   createPerson,
@@ -17,18 +18,6 @@ export enum Statuses {
   Error = "Error",
 }
 
-// TODO: change so dates export as json
-// dates are set to any, idk how to fix error yet I know this is not right lol
-
-export interface PersonState {
-  id?: number;
-  firstname?: string;
-  lastname?: string;
-  email?: string;
-  created_at?: any;
-  updated_at?: any;
-  cars: CarState[];
-}
 
 export interface PersonFormData {
   person: {
@@ -54,6 +43,17 @@ export interface PeopleState {
   person: PersonState[];
   status: string;
 }
+// TODO: change so dates export as json
+// dates are set to any, idk how to fix error yet I know this is not right lol
+export interface PersonState {
+  id?: number;
+  firstname?: string;
+  lastname?: string;
+  email?: string;
+  created_at?: any;
+  updated_at?: any;
+  cars: CarState[];
+}
 
 const initialState: PeopleState = {
   person: [
@@ -74,6 +74,8 @@ export const fetchPersonAsync = createAsyncThunk(
   "people/fetchPeople",
   async () => {
     const response = await fetchPeople();
+    // console.log(response[0].id);
+    // dispatch(setOwner(parseInt(response[0].id)))
     return response;
   }
 );
@@ -106,7 +108,6 @@ export const destroyPersonAsync = createAsyncThunk(
 );
 
 // TODO
-// all using immer, not sure if correct way
 // unit test this
 export const peopleSlice = createSlice({
   name: "person",
@@ -128,6 +129,7 @@ export const peopleSlice = createSlice({
         return produce(state, (draftState) => {
           // console.log(action.payload);
           draftState.person = action.payload;
+          // dispatch(setOwner(parseInt(response[0].id)))
           draftState.status = Statuses.UpToDate;
         });
       })

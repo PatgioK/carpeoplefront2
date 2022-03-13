@@ -17,7 +17,9 @@ function People() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchPersonAsync());
+    let res = dispatch(fetchPersonAsync());
+    console.log(res);
+    
   }, [dispatch])
 
   function toggleEditForm(person_id?:number) {

@@ -44,13 +44,19 @@ export function OwnerSelector() {
 
   const createSelectItems = () => {
     let items = [];
+    if(owners.length > 0) {
     for (let i = 0; i < owners.length; i++) {
+      if(i == 0){
+
+    // dispatch(setOwner(owners[i].id!!))
+      }
       items.push(
         <option key={i} value={owners[i].id}>
           {owners[i].firstname}
         </option>
       );
     }
+  }
     return items;
   };
 
