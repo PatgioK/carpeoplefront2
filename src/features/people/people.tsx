@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { selectCars } from "../cars/carSlice";
 import { selectPerson, fetchPersonAsync, updatePersonAsync, Statuses, selectStatus, PersonFormData } from "./peopleSlice";
 import Person from './person';
 import {PersonForm } from "./personForm";
@@ -38,7 +39,7 @@ function People() {
   if(status !== Statuses.UpToDate) {
     contents = <div>{status}</div>
   } else {
-    contents = <><div className="personcontainer">
+    contents = <><div className="peoplecontainer">
       <h3>{status}</h3>
       <PersonForm />
       

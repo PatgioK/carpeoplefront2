@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../app/hooks';
+import { selectStatus } from '../people/peopleSlice';
 import {car, Car} from './car';
 import { selectCars } from './carSlice';
 
@@ -9,6 +10,7 @@ interface cars {
 
 function Cars (props: cars) {
 const cars = useAppSelector(selectCars);
+const status = useAppSelector(selectStatus);
 
 const dispatch = useDispatch();
 
@@ -18,7 +20,7 @@ const dispatch = useDispatch();
             {props.cars && props.cars?.length > 0 && props.cars!!.map((carobj: car, idx) => {
                 console.log(carobj);
                 return (
-                <Car {...carobj} key={idx}/>
+                <Car {...carobj} dispatch={dispatch} key={idx}/>
                 )
             })}
             </div>

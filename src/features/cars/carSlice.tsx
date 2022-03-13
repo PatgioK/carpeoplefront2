@@ -11,8 +11,8 @@ export interface CarState {
     model?: string,
     price?: number,
     person_id?: number
-    created_at: any,
-    updated_at: any,
+    created_at?: any,
+    updated_at?: any,
 }
 
 export interface CarsState {
@@ -57,9 +57,10 @@ export const carSlice = createSlice({
              })
          }) 
 
-         .addCase(fetchCarsAsync.fulfilled, (state) => {
+         .addCase(fetchCarsAsync.fulfilled, (state, action) => {
              return produce(state, (draftState) => {
                  draftState.status = Statuses.UpToDate
+                 draftState.car = action.payload;
              })
          }) 
          .addCase(fetchCarsAsync.rejected, (state) => {

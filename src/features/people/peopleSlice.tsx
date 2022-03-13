@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import produce from "immer";
 import { RootState } from "../../app/store";
+import { CarState } from "../cars/carSlice";
 import {
   fetchPeople,
   createPerson,
@@ -26,7 +27,7 @@ export interface PersonState {
   email?: string;
   created_at?: any;
   updated_at?: any;
-  cars?: [];
+  cars: CarState[];
 }
 
 export interface PersonFormData {
