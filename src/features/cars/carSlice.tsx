@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import produce from "immer";
 import { RootState } from "../../app/store";
 import { Statuses } from "../people/peopleSlice";
-import {fetchCars, createCar} from './carAPI';
+import {fetchCars, createCar, destroyCar} from './carAPI';
 
 export interface CarState {
     id?: number,
@@ -22,6 +22,12 @@ export interface CarFormData {
         model?:string,
         price?:number,
         person_id:number,
+    }
+}
+
+export interface CarDeleteData {
+    car: {
+        car_id: number,
     }
 }
 
@@ -46,6 +52,8 @@ const initialState: CarsState = {
   status: Statuses.Initial,
 };
 
+
+
 export const fetchCarsAsync = createAsyncThunk(
     'cars/fetchCars',
     async() => {
@@ -59,6 +67,15 @@ export const createCarAsync = createAsyncThunk(
     async (payload:CarFormData) => {
         console.log(payload);
         const response = await createCar(payload);
+        return response;
+    }
+)
+
+export const destroyCarAsync = createAsyncThunk(
+    'cars/destroyCar',
+    async (payload:CarDeleteData) => {
+        const response = await destroyCar(payload);
+
         return response;
     }
 )
@@ -87,6 +104,44 @@ export const carSlice = createSlice({
                  draftState.status = Statuses.Error
              })
          }) 
+
+         //create 
+         .addCase(createCarAsync.pending, (state) => {
+            return produce(state, (draftState) => {
+               draftState.status = Statuses.Loading;
+            })
+        }) 
+
+        .addCase(createCarAsync.fulfilled, (state, action) => {
+            return produce(state, (draftState) => {
+                draftState.car.push(action.payload);
+                draftState.status = Statuses.UpToDate
+            })
+        }) 
+        .addCase(createCarAsync.rejected, (state) => {
+            return produce(state, (draftState) => {
+                draftState.status = Statuses.Error
+            })
+        }) 
+         //destroy
+
+         .addCase(destroyCarAsync.pending, (state) => {
+            return produce(state, (draftState) => {
+               draftState.status = Statuses.Loading;
+            })
+        }) 
+
+        .addCase(destroyCarAsync.fulfilled, (state, action) => {
+            return produce(state, (draftState) => {
+                draftState.status = Statuses.UpToDate
+                draftState.car = action.payload;
+            })
+        }) 
+        .addCase(destroyCarAsync.rejected, (state) => {
+            return produce(state, (draftState) => {
+                draftState.status = Statuses.Error
+            })
+        }) 
     }
 })
 

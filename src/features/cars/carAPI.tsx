@@ -1,4 +1,4 @@
-import { CarFormData, CarsState, CarState } from "./carSlice";
+import { CarDeleteData, CarFormData, CarsState, CarState } from "./carSlice";
 import { API_URL } from "../people/peopleAPI";
 
 export async function fetchCars() {
@@ -31,4 +31,23 @@ export async function createCar(payload:CarFormData) {
     console.error("error: ", error)
     return {} as CarsState;
   })
+}
+
+export async function destroyCar(payload:CarDeleteData) {
+  const car = payload.car;
+  return fetch(`${API_URL}/cars/${car.car_id}`, {
+    method: "DELETE",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      car,
+    })
+  })
+  .then((response) => response.json())
+  .catch((error) => {
+    console.error("error: ", error)
+    return {} as CarsState;
+  })
+
 }

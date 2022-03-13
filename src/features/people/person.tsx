@@ -4,7 +4,7 @@ import { Dispatch } from "react";
 import { Car } from "../cars/car";
 import { PersonState } from "./peopleSlice";
 import { PersonButtonGroup } from "./personButtonGroup";
-import { CarState, selectCars } from "../cars/carSlice";
+import { CarFormData, CarState, selectCars } from "../cars/carSlice";
 import { useAppSelector } from "../../app/hooks";
 
 interface PersonProps {
@@ -21,9 +21,25 @@ function Person(props: PersonProps) {
   const [lastname, setLastName] = useState(props.person.lastname);
   const [email, setEmail] = useState(props.person.email);
   const dispatch = useDispatch();
+  const [carToEdit, setCarToEdit] = useState(0);
   const [isEditing, setIsEditing] = useState(
     props.personToEdit === props.person.id
   );
+  
+  
+  function toggleCarEditForm (car_id?: number) {
+      if(carToEdit === car_id) {
+          setCarToEdit(0);
+      } else {
+          setCarToEdit(car_id as number)
+      }
+    }
+  
+  function submitCarEdit(carData:CarFormData) {
+      // dispatch(updateCarAsync(carData));
+      toggleCarEditForm();
+  }
+  
 
   useEffect(() => {
     setIsEditing(props.personToEdit === props.person.id);
@@ -104,7 +120,13 @@ function Person(props: PersonProps) {
         props.person.cars?.length > 0 &&
         props.person.cars.map((carobj: CarState, idx) => {
           // console.log(carobj);
-          return <Car car={carobj} dispatch={dispatch} key={idx} />;
+          return <Car 
+          car={carobj} 
+          dispatch={dispatch} 
+          carToEdit={carToEdit} 
+          submitCarEdit={submitCarEdit} 
+          toggleCarEditForm={() => toggleCarEditForm(carobj.id)}
+          key={idx} />;
         })}
     </div>
   );

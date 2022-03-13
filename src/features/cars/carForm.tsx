@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../app/hooks";
 import { selectPerson } from "../people/peopleSlice";
 import { createCarAsync } from "./carSlice";
-import { OwnerSelector, selectOwner } from "./ownerSelector";
-import {setOwner} from './ownerSelector';
+import { OwnerSelector,  } from "./ownerSelector";
+import {setOwner, selectOwner} from './ownerSlice';
 
 const sleep = (ms:number) => {
     return new Promise((resolve) => setTimeout(resolve, ms));

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import produce from "immer";
 import { RootState } from "../../app/store";
 import { CarState } from "../cars/carSlice";
-import { setOwner } from "../cars/ownerSelector";
+import { setOwner } from "../cars/ownerSlice";
 import {
   fetchPeople,
   createPerson,
@@ -34,10 +34,10 @@ export interface PersonDeleteData {
   };
 }
 
-export interface PersonUpdateData {
-  person_id: number;
-  person: PersonState;
-}
+// export interface PersonUpdateData {
+//   person_id: number;
+//   person: PersonState;
+// }
 
 export interface PeopleState {
   person: PersonState[];

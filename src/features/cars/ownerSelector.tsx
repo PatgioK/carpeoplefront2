@@ -4,39 +4,9 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../app/hooks";
 import { RootState } from "../../app/store";
 import { selectPerson } from "../people/peopleSlice";
+import { setOwner } from "./ownerSlice";
 
 
-interface oWner{
-  id:number
-}
-
-const initialState: oWner = {
-  id: -1,
-}
-
-export  const ownerSlice = createSlice({
-  name: 'owner',
-  initialState,
-
-  // reducers:{
-  //   setOwner: (state) => {
-  //     console.log(state);
-  //     let own = document.getElementById("OwnerSelector") as HTMLSelectElement
-  //     console.log(parseInt(own!!.options[own.selectedIndex].value));
-  //     state.id = parseInt(own!!.options[own.selectedIndex].value);
-
-
-  //   }
-  // },
-  reducers:{
-    setOwner: (state, action: PayloadAction<number>) => {
-      state.id = action.payload;
-
-
-    }
-  },
-  extraReducers: (builder) => {}
-})
 
 export function OwnerSelector() {
   const dispatch = useDispatch();
@@ -88,7 +58,3 @@ const selector = (
     </div>
   )
 }
-
-export const selectOwner= (state: RootState) => state.selectedOwner.id;
-export default ownerSlice.reducer;
-export const { setOwner } = ownerSlice .actions 

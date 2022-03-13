@@ -18,7 +18,7 @@ function People() {
 
   useEffect(() => {
     let res = dispatch(fetchPersonAsync());
-    console.log(res);
+    // console.log(res);
     
   }, [dispatch])
 

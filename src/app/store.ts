@@ -2,7 +2,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import peopleReducer from '../features/people/peopleSlice'
 import carsReducer from '../features/cars/carSlice';
-import ownerReducer from '../features/cars/ownerSelector';
+import ownerReducer from '../features/cars/ownerSlice';
 
 export const store = configureStore({
   reducer: {
