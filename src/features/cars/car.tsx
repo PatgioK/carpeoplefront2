@@ -97,7 +97,7 @@ export const Car = memo(function(props: car) {
   );
 
   return (
-    <div className="car">
+    <div className="">
       <p>CAR:</p> {isCarEditing ? editableYear : yearEle} {isCarEditing ? editableMake : makeEle} {isCarEditing ? editableModel : modelEle} {isCarEditing ? editablePrice : priceEle}
       {isCarEditing ? <OwnerSelector />  : ""}
       {isCarEditing ? submitCarButton  : ""}

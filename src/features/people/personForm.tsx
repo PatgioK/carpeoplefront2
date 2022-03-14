@@ -29,7 +29,7 @@ export function PersonForm() {
         setEmail('');
     }
 
-    return <div className="person form">
+    return <div className="personForm">
         <h3>Create Person Form</h3>
         <form>
             <label>first name: </label>

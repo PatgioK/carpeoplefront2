@@ -38,6 +38,8 @@ const Person = memo(function(props: PersonProps) {
     console.log(carData);
       dispatch(updateCarAsync(carData));
       toggleCarEditForm();
+
+    dispatch(fetchPersonAsync());
   }
 
   useEffect(() => {
@@ -56,7 +58,7 @@ const Person = memo(function(props: PersonProps) {
     };
     props.submitEdit(formData);
     resetState();
-    dispatch(fetchPersonAsync())
+    // dispatch(fetchPersonAsync())
   }
 
   function resetState() {
@@ -65,9 +67,9 @@ const Person = memo(function(props: PersonProps) {
     setEmail(props.person.email);
   }
 
-  const fnameEle = <p className="">First Name: {props.person.firstname}  </p>;
-  const lnameEle = <p className="fnameEle">Last Name: {props.person.lastname} </p>;
-  const emailEle = <p className="fnameEle">Email: {props.person.email}</p>;
+  const fnameEle = <p className=""> {props.person.firstname}  </p>;
+  const lnameEle = <p className="fnameEle">{props.person.lastname} </p>;
+  const emailEle = <p className="fnameEle">{props.person.email}</p>;
 
   const editableFName = (
     <input
@@ -104,11 +106,11 @@ const Person = memo(function(props: PersonProps) {
 
   return (
     <div className="personContainer">
-      <h2>person container</h2>
+      <h2>
       {isEditing ? editableFName : fnameEle}
       {isEditing ? editableLName : lnameEle}
       {isEditing ? editableEmail : emailEle}
-      {isEditing ? submitButton : ""}
+      {isEditing ? submitButton : ""}</h2>
       <PersonButtonGroup
         dispatch={dispatch}
         person={props.person}
@@ -116,7 +118,6 @@ const Person = memo(function(props: PersonProps) {
         isEditing={isEditing}
       />
 
-      <h2>cars container</h2>
       {props.person.cars &&
         props.person.cars?.length > 0 &&
         props.person.cars.map((carobj: CarState, idx) => {

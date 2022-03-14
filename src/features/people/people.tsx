@@ -33,6 +33,8 @@ const People = memo(function() {
   function submitEdit(formData:PersonFormData) {
     dispatch(updatePersonAsync(formData));
     toggleEditForm();
+
+    dispatch(fetchPersonAsync())
   }
 
   let contents;
