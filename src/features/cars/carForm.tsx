@@ -41,6 +41,7 @@ export function CarForm(props: any) {
 
   return (
     <div className="Car Form">
+        <h1>current owner selector: {owner}</h1>
       <h1>Create Car Form</h1>
       <label>Choose Owner: </label>
       <OwnerSelector />

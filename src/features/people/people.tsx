@@ -17,9 +17,7 @@ const People = memo(function() {
 
   useEffect(() => {
     let res = dispatch(fetchPersonAsync());
-    console.log(res);
-
-    
+    // console.log(res);
   }, [dispatch])
 
   function toggleEditForm(person_id?:number) {
