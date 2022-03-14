@@ -5,6 +5,7 @@ import { Car } from "../cars/car";
 import { fetchPersonAsync, PersonState } from "./peopleSlice";
 import { PersonButtonGroup } from "./personButtonGroup";
 import { CarFormData, CarState, selectCars, updateCarAsync } from "../cars/carSlice";
+import './person.css'
 
 interface PersonProps {
   dispatch: Dispatch<any>;
@@ -102,7 +103,7 @@ const Person = memo(function(props: PersonProps) {
   // console.log(props.person.cars);
 
   return (
-    <div className="person">
+    <div className="personContainer">
       <h2>person container</h2>
       {isEditing ? editableFName : fnameEle}
       {isEditing ? editableLName : lnameEle}
@@ -128,6 +129,7 @@ const Person = memo(function(props: PersonProps) {
           toggleCarEditForm={() => toggleCarEditForm(carobj.id)}
           key={idx} />;
         })}
+        <br />
     </div>
   );
 })

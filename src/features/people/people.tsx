@@ -40,7 +40,7 @@ const People = memo(function() {
   if(status !== Statuses.UpToDate) {
     contents = <div>{status}</div>
   } else {
-    contents = <div className="peoplecontainer">
+    contents = <div className="card">
       <h3>{status}</h3>
       <PersonForm />
       <CarForm {...people}/>

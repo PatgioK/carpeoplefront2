@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../app/hooks";
 import { selectPerson } from "../people/peopleSlice";
@@ -7,13 +8,9 @@ export function OwnerSelector() {
   const dispatch = useDispatch();
   const owners = useAppSelector(selectPerson);
 
-  // useEffect(() => {
-  //   console.log(owners);
-  //   if(owners.length > 0) {
-  //   setOwner(owners[0].id!!);
-  //   }
-  // },[])
-
+  useEffect(() => {
+    if (owners.length > 0) dispatch(setOwner(owners[0].id!!));
+  }, []);
   const createSelectItems = () => {
     let items = [];
     if (owners.length > 0) {
@@ -24,7 +21,7 @@ export function OwnerSelector() {
           </option>
         );
       }
-      dispatch(setOwner(owners[0].id!!))
+      // dispatch(setOwner(owners[0].id!!));
     }
     return items;
   };

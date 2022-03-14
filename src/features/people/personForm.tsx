@@ -30,7 +30,7 @@ export function PersonForm() {
     }
 
     return <div className="person form">
-        <h1>Create Person Form</h1>
+        <h3>Create Person Form</h3>
         <form>
             <label>first name: </label>
             <input
