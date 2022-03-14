@@ -18,6 +18,7 @@ export function PersonButtonGroup(props: pbutgroop) {
     } else {
       return;
     }
+    props.dispatch(fetchPersonAsync())
   }
 
     function handleDelClick(
@@ -32,7 +33,7 @@ export function PersonButtonGroup(props: pbutgroop) {
         }
         // console.log(JSON.stringify(payload));
         props.dispatch(destroyPersonAsync(payload));
-        props.dispatch(fetchPersonAsync())
+        // props.dispatch(fetchPersonAsync())
     }
 
   return (
