@@ -1,5 +1,5 @@
 import { Dispatch } from "@reduxjs/toolkit";
-import { useEffect, useState } from "react";
+import { fetchPersonAsync } from "../people/peopleSlice";
 import { destroyCarAsync } from "./carSlice";
 
 interface carButGroop {
@@ -8,6 +8,7 @@ interface carButGroop {
   toggleCarEditForm: () => void;
   isCarEditing: boolean;
 }
+
 export function CarButtonGroup(props: carButGroop) {
 
   const delButton = () => {
@@ -28,6 +29,7 @@ export function CarButtonGroup(props: carButGroop) {
       },
     };
     props.dispatch(destroyCarAsync(payload));
+    props.dispatch(fetchPersonAsync())
   };
 
   return (

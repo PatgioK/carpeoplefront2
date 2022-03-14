@@ -13,21 +13,9 @@ interface oWner{
     name: 'owner',
     initialState,
   
-    // reducers:{
-    //   setOwner: (state) => {
-    //     console.log(state);
-    //     let own = document.getElementById("OwnerSelector") as HTMLSelectElement
-    //     console.log(parseInt(own!!.options[own.selectedIndex].value));
-    //     state.id = parseInt(own!!.options[own.selectedIndex].value);
-  
-  
-    //   }
-    // },
     reducers:{
       setOwner: (state, action: PayloadAction<number>) => {
         state.id = action.payload;
-  
-  
       }
     },
     extraReducers: (builder) => {}

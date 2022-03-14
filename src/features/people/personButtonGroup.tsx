@@ -1,5 +1,4 @@
-import { PersonState } from "./peopleSlice";
-import { useDispatch } from "react-redux";
+import { fetchPersonAsync, PersonState } from "./peopleSlice";
 import { Dispatch } from "react";
 import { destroyPersonAsync } from "./peopleSlice";
 
@@ -11,8 +10,6 @@ interface pbutgroop {
 }
 
 export function PersonButtonGroup(props: pbutgroop) {
-
-
 
   const delButton = () => {
     let text = "Are you sure?";
@@ -35,6 +32,7 @@ export function PersonButtonGroup(props: pbutgroop) {
         }
         // console.log(JSON.stringify(payload));
         props.dispatch(destroyPersonAsync(payload));
+        props.dispatch(fetchPersonAsync())
     }
 
   return (

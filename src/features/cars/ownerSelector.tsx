@@ -1,16 +1,18 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ChangeEvent, ChangeEventHandler, FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../app/hooks";
-import { RootState } from "../../app/store";
 import { selectPerson } from "../people/peopleSlice";
 import { setOwner } from "./ownerSlice";
-
-
 
 export function OwnerSelector() {
   const dispatch = useDispatch();
   const owners = useAppSelector(selectPerson);
+
+  // useEffect(() => {
+  //   console.log(owners);
+  //   if(owners.length > 0) {
+  //   setOwner(owners[0].id!!);
+  //   }
+  // },[])
 
   const createSelectItems = () => {
     let items = [];

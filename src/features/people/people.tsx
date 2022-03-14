@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 import { CarForm } from "../cars/carForm";
-import { selectCars } from "../cars/carSlice";
 import { selectPerson, fetchPersonAsync, updatePersonAsync, Statuses, selectStatus, PersonFormData } from "./peopleSlice";
 import Person from './person';
 import {PersonForm } from "./personForm";
 
-function People() {
+const People = memo(function() {
   const people = useAppSelector(selectPerson);
   const status = useAppSelector(selectStatus);
 
@@ -18,7 +17,8 @@ function People() {
 
   useEffect(() => {
     let res = dispatch(fetchPersonAsync());
-    // console.log(res);
+    console.log(res);
+
     
   }, [dispatch])
 
@@ -42,7 +42,7 @@ function People() {
   if(status !== Statuses.UpToDate) {
     contents = <div>{status}</div>
   } else {
-    contents = <><div className="peoplecontainer">
+    contents = <div className="peoplecontainer">
       <h3>{status}</h3>
       <PersonForm />
       <CarForm {...people}/>
@@ -59,12 +59,12 @@ function People() {
 
           </div>
       })}
-      </div></>
+      </div>
   }
 
   return ( <div>
     {contents}
     </div>
   );
-}
+})
 export default People;

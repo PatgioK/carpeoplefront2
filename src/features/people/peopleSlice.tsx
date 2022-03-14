@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import produce from "immer";
 import { RootState } from "../../app/store";
 import { CarState } from "../cars/carSlice";
-import { setOwner } from "../cars/ownerSlice";
 import {
   fetchPeople,
   createPerson,
@@ -17,7 +16,6 @@ export enum Statuses {
   Deleted = "Deleted",
   Error = "Error",
 }
-
 
 export interface PersonFormData {
   person: {
@@ -107,8 +105,6 @@ export const destroyPersonAsync = createAsyncThunk(
   }
 );
 
-// TODO
-// unit test this
 export const peopleSlice = createSlice({
   name: "person",
   initialState,

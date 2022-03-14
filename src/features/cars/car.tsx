@@ -1,6 +1,7 @@
-import { Dispatch, useEffect, useState } from "react";
+import { Dispatch, useEffect, useState, memo } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../app/hooks";
+import { fetchPersonAsync } from "../people/peopleSlice";
 import { CarButtonGroup } from "./carButtonGroup";
 import { CarFormData, CarState } from "./carSlice";
 import { OwnerSelector } from "./ownerSelector";
@@ -14,9 +15,7 @@ export interface car {
   toggleCarEditForm: () => void;
 }
 
-export function Car(props: car) {
-  // console.log(props.year);
-
+export const Car = memo(function(props: car) {
   const dispatch = useDispatch();
   const [year, setYear] = useState(props.car.year);
   const [make, setMake] = useState(props.car.make);
@@ -29,13 +28,13 @@ export function Car(props: car) {
     setIsCarEditing(props.carToEdit === props.car.id)
   }, [props.carToEdit, props.car.id])
 
-
   let resetState = () => {
     setYear(props.car.year);
     setMake(props.car.make);
     setModel(props.car.model);
     setPrice(props.car.price);
   }
+  
   const yearEle = <p>year: {props.car.year}</p>;
   const makeEle = <p>make: {props.car.make} </p>;
   const modelEle = <p>model: {props.car.model}</p>;
@@ -88,6 +87,7 @@ export function Car(props: car) {
       }
       props.submitCarEdit(carData);
       resetState();
+      dispatch(fetchPersonAsync())
   }
 
   const submitCarButton = (
@@ -109,4 +109,4 @@ export function Car(props: car) {
       /> 
     </div>
   );
-}
+})

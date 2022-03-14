@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Dispatch } from "react";
+import { Dispatch, memo } from "react";
 import { Car } from "../cars/car";
-import { PersonState } from "./peopleSlice";
+import { fetchPersonAsync, PersonState } from "./peopleSlice";
 import { PersonButtonGroup } from "./personButtonGroup";
 import { CarFormData, CarState, selectCars, updateCarAsync } from "../cars/carSlice";
-import { useAppSelector } from "../../app/hooks";
 
 interface PersonProps {
   dispatch: Dispatch<any>;
@@ -16,7 +15,7 @@ interface PersonProps {
   cars?: CarState[];
 }
 
-function Person(props: PersonProps) {
+const Person = memo(function(props: PersonProps) {
   const [firstname, setFirstName] = useState(props.person.firstname);
   const [lastname, setLastName] = useState(props.person.lastname);
   const [email, setEmail] = useState(props.person.email);
@@ -25,7 +24,6 @@ function Person(props: PersonProps) {
   const [isEditing, setIsEditing] = useState(
     props.personToEdit === props.person.id
   );
-  
   
   function toggleCarEditForm (car_id?: number) {
       if(carToEdit === car_id) {
@@ -40,7 +38,6 @@ function Person(props: PersonProps) {
       dispatch(updateCarAsync(carData));
       toggleCarEditForm();
   }
-  
 
   useEffect(() => {
     setIsEditing(props.personToEdit === props.person.id);
@@ -58,6 +55,7 @@ function Person(props: PersonProps) {
     };
     props.submitEdit(formData);
     resetState();
+    dispatch(fetchPersonAsync())
   }
 
   function resetState() {
@@ -116,7 +114,7 @@ function Person(props: PersonProps) {
         toggleEditForm={props.toggleEditForm}
         isEditing={isEditing}
       />
-      {/* {props.person.cars ? <Cars cars={props.person.cars}/> : "" } */}
+
       <h2>cars container</h2>
       {props.person.cars &&
         props.person.cars?.length > 0 &&
@@ -132,6 +130,6 @@ function Person(props: PersonProps) {
         })}
     </div>
   );
-}
+})
 
 export default Person;

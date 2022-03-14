@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {createPersonAsync } from './peopleSlice';
+import {createPersonAsync, fetchPersonAsync } from './peopleSlice';
 
 
 export function PersonForm() {
-    //pass dispatch through props?
     const dispatch = useDispatch();
     const [fname, setFName] = useState('');
     const [lname, setLName] = useState('');
@@ -21,6 +20,7 @@ export function PersonForm() {
         }
         dispatch(createPersonAsync(formData));
         resetState();
+        dispatch(fetchPersonAsync())
     }
 
     function resetState() {
@@ -60,7 +60,6 @@ export function PersonForm() {
             <button
                 type='submit'
                 onClick={(e) => submitHandler(e)}>Submit</button>
-
         </form>
     </div>
 

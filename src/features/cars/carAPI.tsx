@@ -51,7 +51,6 @@ export async function destroyCar(payload:CarDeleteData) {
   })
 }
 
-
 export async function updateCar(payload: CarFormData) {
   const car = payload.car;
   return fetch(`${API_URL}/cars/${car.id}.json`, {
