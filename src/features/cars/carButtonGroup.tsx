@@ -1,4 +1,5 @@
 import { Dispatch } from "@reduxjs/toolkit";
+import { sleep } from "../../App";
 import { fetchPersonAsync } from "../people/peopleSlice";
 import { destroyCarAsync } from "./carSlice";
 
@@ -8,6 +9,7 @@ interface carButGroop {
   toggleCarEditForm: () => void;
   isCarEditing: boolean;
 }
+
 
 export function CarButtonGroup(props: carButGroop) {
 
@@ -20,7 +22,7 @@ export function CarButtonGroup(props: carButGroop) {
     }
   }
 
-  const handleDelClick = (
+  const handleDelClick = async (
     // e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     const payload = {
@@ -29,6 +31,7 @@ export function CarButtonGroup(props: carButGroop) {
       },
     };
     props.dispatch(destroyCarAsync(payload));
+    await sleep(340);
     props.dispatch(fetchPersonAsync())
   };
 

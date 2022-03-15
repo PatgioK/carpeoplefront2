@@ -1,5 +1,6 @@
 import { Dispatch, useEffect, useState, memo } from "react";
 import { useDispatch } from "react-redux";
+import { sleep } from "../../App";
 import { useAppSelector } from "../../app/hooks";
 import { fetchPersonAsync } from "../people/peopleSlice";
 import { CarButtonGroup } from "./carButtonGroup";
@@ -73,7 +74,7 @@ export const Car = memo(function(props: car) {
     />
   );
 
-  let submitHandler = (e: React.FormEvent<HTMLElement>) => {
+  let submitHandler = async (e: React.FormEvent<HTMLElement>) => {
       e.preventDefault();
       const carData = {
           car: {
@@ -87,6 +88,7 @@ export const Car = memo(function(props: car) {
       }
       props.submitCarEdit(carData);
       resetState();
+      // await sleep(340);
       dispatch(fetchPersonAsync())
   }
 

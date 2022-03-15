@@ -25,6 +25,10 @@ const Person = memo(function(props: PersonProps) {
   const [isEditing, setIsEditing] = useState(
     props.personToEdit === props.person.id
   );
+
+  useEffect(() => {
+    setIsEditing(props.personToEdit === props.person.id);
+  }, [props.personToEdit, props.person.id]);
   
   function toggleCarEditForm (car_id?: number) {
       if(carToEdit === car_id) {
@@ -41,10 +45,6 @@ const Person = memo(function(props: PersonProps) {
 
     dispatch(fetchPersonAsync());
   }
-
-  useEffect(() => {
-    setIsEditing(props.personToEdit === props.person.id);
-  }, [props.personToEdit, props.person.id]);
 
   function submitHandler(e: React.FormEvent<HTMLElement>) {
     e.preventDefault();

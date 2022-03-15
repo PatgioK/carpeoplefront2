@@ -8,9 +8,13 @@ export function OwnerSelector() {
   const dispatch = useDispatch();
   const owners = useAppSelector(selectPerson);
 
+
+  //on load set ownerselector in store to first person if there is a person
   useEffect(() => {
     if (owners.length > 0) dispatch(setOwner(owners[0].id!!));
   }, []);
+
+
   const createSelectItems = () => {
     let items = [];
     if (owners.length > 0) {
