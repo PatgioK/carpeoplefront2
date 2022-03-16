@@ -41,37 +41,37 @@ export const Car = memo(function(props: car) {
   const modelEle = <p>model: {props.car.model}</p>;
   const priceEle = <p>price: {props.car.price}</p>;
 
-  const editableYear = (
+  const editableYear = (<><p>year:</p>
     <input
       type="number"
       className=""
       value={year}
       onChange={(e) => setYear(parseInt(e.target.value))}
-    />
+    /></>
   );
-  const editableMake = (
+  const editableMake = (<><p>make:</p>
     <input
       type="text"
       className=""
       value={make}
       onChange={(e) => setMake(e.target.value)}
-    />
+    /></>
   );
-  const editableModel = (
+  const editableModel = (<><p>model:</p>
     <input
       type="text"
       className=""
       value={model}
       onChange={(e) => setModel(e.target.value)}
-    />
+    /></>
   );
-  const editablePrice = (
+  const editablePrice = (<><p>Price:</p>
     <input
       type="number"
       className=""
       value={price}
       onChange={(e) => setPrice(parseInt(e.target.value))}
-    />
+    /></>
   );
 
   let submitHandler = async (e: React.FormEvent<HTMLElement>) => {
@@ -101,7 +101,7 @@ export const Car = memo(function(props: car) {
   return (
     <div className="">
       <p>CAR:</p> {isCarEditing ? editableYear : yearEle} {isCarEditing ? editableMake : makeEle} {isCarEditing ? editableModel : modelEle} {isCarEditing ? editablePrice : priceEle}
-      {isCarEditing ? <OwnerSelector />  : ""}
+      {isCarEditing ? <>Owner: <OwnerSelector /> </> : ""}
       {isCarEditing ? submitCarButton  : ""}
       <CarButtonGroup
         car_id={props.car.id!!}

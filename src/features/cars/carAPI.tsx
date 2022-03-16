@@ -1,70 +1,70 @@
 import { CarDeleteData, CarFormData, CarsState, CarState } from "./carSlice";
 import { API_URL } from "../people/peopleAPI";
 
-export async function fetchCars() {
+export const fetchCars = async () => {
   return fetch(`${API_URL}/cars.json`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   })
-  .then((response) => response.json())
-  .catch((error) => {
-      console.error("error:" , error)
+    .then((response) => response.json())
+    .catch((error) => {
+      console.error("error:", error);
       return {} as CarsState;
-  })
-}
+    });
+};
 
-export async function createCar(payload:CarFormData) {
+export const createCar = async (payload: CarFormData) => {
   const car = payload.car;
   return fetch(`${API_URL}/cars.json`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
       car,
-    })
+    }),
   })
-  .then((response) => response.json())
-  .catch((error) => {
-    console.error("error: ", error)
-    return {} as CarsState;
-  })
-}
+    .then((response) => response.json())
+    .catch((error) => {
+      console.error("error: ", error);
+      return {} as CarsState;
+    });
+};
 
-export async function destroyCar(payload:CarDeleteData) {
+export const destroyCar = async (payload: CarDeleteData) => {
   const car = payload.car;
   return fetch(`${API_URL}/cars/${car.car_id}`, {
     method: "DELETE",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
       car,
-    })
+    }),
   })
-  .then((response) => response.json())
-  .catch((error) => {
-    console.error("error: ", error)
-    return {} as CarsState;
-  })
-}
+    .then((response) => response.json())
+    .catch((error) => {
+      console.error("error: ", error);
+      return {} as CarsState;
+    });
+};
 
-export async function updateCar(payload: CarFormData) {
+export const updateCar = async (payload: CarFormData) => {
   const car = payload.car;
   return fetch(`${API_URL}/cars/${car.id}.json`, {
     method: "PUT",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      car
+      car,
     }),
   })
-  .then((response) => response.json())
-  .catch((error) => {
-    console.log("Error: ", error);
-    return {} as CarState;
-  })
-}
+    .then((response) => response.json())
+    .catch((error) => {
+      console.log("Error: ", error);
+      return {} as CarState;
+    });
+};

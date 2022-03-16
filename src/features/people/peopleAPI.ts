@@ -1,7 +1,7 @@
 import { PeopleState, PersonDeleteData, PersonFormData, } from "./peopleSlice";
 export const API_URL = "http://localhost:3000";
 
-export async function fetchPeople() {
+export const fetchPeople = () => {
   return fetch(`${API_URL}/people.json`, {
     method: "GET",
     headers: {
@@ -15,7 +15,7 @@ export async function fetchPeople() {
     });
 }
 
-export async function createPerson(payload: PersonFormData) {
+export const createPerson = (payload: PersonFormData) => {
   const person = payload.person;
   return fetch(`${API_URL}/people.json`, {
     method: "POST",
@@ -33,7 +33,7 @@ export async function createPerson(payload: PersonFormData) {
     });
 }
 
-export async function updatePerson(payload: PersonFormData) {
+export const updatePerson = (payload: PersonFormData) => {
   const person = payload.person;
   return fetch(`${API_URL}/people/${person.id}.json`, {
     method: "PUT",
@@ -51,7 +51,7 @@ export async function updatePerson(payload: PersonFormData) {
     });
 }
 
-export async function destroyPerson(payload: PersonDeleteData) {
+export const destroyPerson = (payload: PersonDeleteData) => {
   const person = payload.person;
   return fetch(`${API_URL}/people/${person.person_id}.json`, {
     method: "DELETE",

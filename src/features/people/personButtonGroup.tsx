@@ -9,7 +9,7 @@ interface pbutgroop {
   isEditing: boolean;
 }
 
-export function PersonButtonGroup(props: pbutgroop) {
+export const PersonButtonGroup = (props: pbutgroop) => {
 
   const delButton = () => {
     let text = "Are you sure?";
@@ -21,9 +21,9 @@ export function PersonButtonGroup(props: pbutgroop) {
     props.dispatch(fetchPersonAsync())
   }
 
-    function handleDelClick(
+    const handleDelClick = (
       // e: React.FormEvent<HTMLElement>
-      ) 
+      ) =>
       {
         const payload = {
             person: {

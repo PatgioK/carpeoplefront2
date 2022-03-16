@@ -4,7 +4,7 @@ import { useAppSelector } from "../../app/hooks";
 import { selectPerson } from "../people/peopleSlice";
 import { setOwner } from "./ownerSlice";
 
-export function OwnerSelector() {
+export const OwnerSelector = () => {
   const dispatch = useDispatch();
   const owners = useAppSelector(selectPerson);
 

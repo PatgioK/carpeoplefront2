@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../app/hooks";
-import { fetchPersonAsync } from "../people/peopleSlice";
+import { fetchPersonAsync, PersonState } from "../people/peopleSlice";
 import { createCarAsync } from "./carSlice";
 import { OwnerSelector } from "./ownerSelector";
 import { selectOwner } from "./ownerSlice";
 
-export function CarForm(props: any) {
+export const CarForm = () => {
   const owner = useAppSelector(selectOwner);
   const dispatch = useDispatch();
 

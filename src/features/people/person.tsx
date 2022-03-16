@@ -30,7 +30,7 @@ const Person = memo(function(props: PersonProps) {
     setIsEditing(props.personToEdit === props.person.id);
   }, [props.personToEdit, props.person.id]);
   
-  function toggleCarEditForm (car_id?: number) {
+  const toggleCarEditForm  = (car_id?: number) => {
       if(carToEdit === car_id) {
           setCarToEdit(0);
       } else {
@@ -38,7 +38,7 @@ const Person = memo(function(props: PersonProps) {
       }
     }
   
-  function submitCarEdit(carData:CarFormData) {
+  const submitCarEdit = (carData:CarFormData) => {
     console.log(carData);
       dispatch(updateCarAsync(carData));
       toggleCarEditForm();
@@ -46,7 +46,7 @@ const Person = memo(function(props: PersonProps) {
     dispatch(fetchPersonAsync());
   }
 
-  function submitHandler(e: React.FormEvent<HTMLElement>) {
+  const submitHandler = (e: React.FormEvent<HTMLElement>) => {
     e.preventDefault();
     const formData = {
       person: {
@@ -61,7 +61,7 @@ const Person = memo(function(props: PersonProps) {
     // dispatch(fetchPersonAsync())
   }
 
-  function resetState() {
+  const resetState = () => {
     setFirstName(props.person.firstname);
     setLastName(props.person.lastname);
     setEmail(props.person.email);
@@ -71,29 +71,29 @@ const Person = memo(function(props: PersonProps) {
   const lnameEle = <p className="fnameEle">{props.person.lastname} </p>;
   const emailEle = <p className="fnameEle">{props.person.email}</p>;
 
-  const editableFName = (
+  const editableFName = (<><p>first name:</p>
     <input
       type="text"
       className=""
       value={firstname}
       onChange={(e) => setFirstName(e.target.value)}
-    ></input>
+    ></input></>
   );
-  const editableLName = (
+  const editableLName = (<><p>last name:</p>
     <input
       type="text"
       className=""
       value={lastname}
       onChange={(e) => setLastName(e.target.value)}
-    ></input>
+    ></input></>
   );
-  const editableEmail = (
+  const editableEmail = (<><p>email:</p>
     <input
       type="text"
       className=""
       value={email}
       onChange={(e) => setEmail(e.target.value)}
-    ></input>
+    ></input></>
   );
 
   const submitButton = (

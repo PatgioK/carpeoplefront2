@@ -20,7 +20,7 @@ const People = memo(function() {
     // console.log(res);
   }, [dispatch])
 
-  function toggleEditForm(person_id?:number) {
+  const toggleEditForm = (person_id?:number) => {
     // if we have editable fields out, we want to set back to default
     if (personToEdit=== person_id) {
       setPersonToEdit(0);
@@ -30,7 +30,7 @@ const People = memo(function() {
     }
   }
 
-  function submitEdit(formData:PersonFormData) {
+  const submitEdit = (formData:PersonFormData) => {
     dispatch(updatePersonAsync(formData));
     toggleEditForm();
 
@@ -45,7 +45,7 @@ const People = memo(function() {
     contents = <div className="card">
       <h3>{status}</h3>
       <PersonForm />
-      <CarForm {...people}/>
+      <CarForm />
       
       {people && people.length > 0 && people.map(person => {
         return <div key={person.id}>

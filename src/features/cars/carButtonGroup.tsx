@@ -11,7 +11,7 @@ interface carButGroop {
 }
 
 
-export function CarButtonGroup(props: carButGroop) {
+export const CarButtonGroup = (props: carButGroop) => {
 
   const delButton = () => {
     let text = "Are you sure?";
