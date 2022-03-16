@@ -102,8 +102,8 @@ export const carSlice = createSlice({
       })
       .addCase(fetchCarsAsync.fulfilled, (state, action) => {
         return produce(state, (draftState) => {
-          draftState.status = Statuses.UpToDate;
           draftState.car = action.payload;
+          draftState.status = Statuses.UpToDate;
         });
       })
       .addCase(fetchCarsAsync.rejected, (state) => {

@@ -35,6 +35,7 @@ export const createCar = async (payload: CarFormData) => {
 
 export const destroyCar = async (payload: CarDeleteData) => {
   const car = payload.car;
+  console.log(payload);
   return fetch(`${API_URL}/cars/${car.car_id}`, {
     method: "DELETE",
     headers: {

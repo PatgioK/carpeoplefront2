@@ -32,11 +32,6 @@ export interface PersonDeleteData {
   };
 }
 
-// export interface PersonUpdateData {
-//   person_id: number;
-//   person: PersonState;
-// }
-
 export interface PeopleState {
   person: PersonState[];
   status: string;
@@ -204,3 +199,69 @@ export const selectPerson = (state: RootState) => state.people.person;
 export const selectStatus = (state: RootState) => state.people.status;
 
 export default peopleSlice.reducer;
+
+
+// REDUCE reducers example : https://medium.com/@michalskoczylas/how-to-reduce-your-reducers-6e288c1fcd5d
+
+// const reduceRequestState =
+//   (requestTypes) =>
+//   (state = RequestState.None, action) => {
+//     switch (action.type) {
+//       case requestTypes.start:
+//         return RequestState.Waiting;
+//       case requestTypes.success:
+//         return RequestState.Success;
+//       case requestTypes.error:
+//         return RequestState.Error;
+//       case requestTypes.reset:
+//         return RequestState.None;
+//       default:
+//         return state;
+//     }
+//   };
+
+// // saves `result` key from action payload
+// const reduceResponseResult =
+//   (requestTypes, init = null) =>
+//   (state = init, action) => {
+//     switch (action.type) {
+//       case requestTypes.success:
+//         return action.result;
+//       case requestTypes.reset:
+//         return null;
+//       default:
+//         return state;
+//     }
+//   };
+
+// // saves given `fieldName` key from action payload `result`
+// const reduceResponseField =
+//   (requestTypes, fieldName, init) =>
+//   (state = init, action) => {
+//     switch (action.type) {
+//       case requestTypes.success:
+//         // response may not contain any results
+//         const value = action.result[fieldName];
+//         return value == null ? init : value;
+//       case requestTypes.reset:
+//         return init;
+//       default:
+//         return state;
+//     }
+//   };
+
+// const reduceResponseErrors =
+//   (requestTypes) =>
+//   (state = null, action) => {
+//     switch (action.type) {
+//       case requestTypes.success:
+//       case requestTypes.reset:
+//         return null;
+//       case requestTypes.error:
+//         return action.error;
+//       default:
+//         return state;
+//     }
+//   };
+
+

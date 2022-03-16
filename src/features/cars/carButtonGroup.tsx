@@ -30,6 +30,7 @@ export const CarButtonGroup = (props: carButGroop) => {
         car_id: props.car_id,
       },
     };
+    console.log(payload)
     props.dispatch(destroyCarAsync(payload));
     await sleep(340);
     props.dispatch(fetchPersonAsync())
