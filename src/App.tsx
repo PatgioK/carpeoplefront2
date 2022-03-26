@@ -15,6 +15,7 @@ const App = memo(function() {
       <h1>Car Ownership App</h1>
       {/* <NavBar /> */}
       {/* <Outlet /> */}
+      
       <People />
     </div>
   );
